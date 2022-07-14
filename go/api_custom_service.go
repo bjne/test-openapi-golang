@@ -8,7 +8,7 @@ type CustomApiService struct {
     DefaultApiService
 }
 
-func (s *DefaultApiService) UsersGet(ctx context.Context) (ImplResponse, error) {
+func (s *CustomApiService) UsersGet(ctx context.Context) (ImplResponse, error) {
 	// TODO - update UsersGet with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
