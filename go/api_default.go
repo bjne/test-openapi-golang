@@ -10,11 +10,11 @@
 package openapi
 
 import (
-//	"encoding/json"
+	"encoding/json"
 	"net/http"
 	"strings"
 
-//	"github.com/gorilla/mux"
+	"github.com/gorilla/mux"
 )
 
 // DefaultApiController binds http requests to an api service and writes the service results to the http response
@@ -51,12 +51,31 @@ func NewDefaultApiController(s DefaultApiServicer, opts ...DefaultApiOption) Rou
 func (c *DefaultApiController) Routes() Routes {
 	return Routes{ 
 		{
+			"FusersGet",
+			strings.ToUpper("Get"),
+			"/v1/fusers",
+			c.FusersGet,
+		},
+		{
 			"UsersGet",
 			strings.ToUpper("Get"),
 			"/v1/users",
 			c.UsersGet,
 		},
 	}
+}
+
+// FusersGet - Returns a list of users.
+func (c *DefaultApiController) FusersGet(w http.ResponseWriter, r *http.Request) {
+	result, err := c.service.FusersGet(r.Context())
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // UsersGet - Returns a list of users.
