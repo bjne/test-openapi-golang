@@ -8,7 +8,7 @@ type CustomApiService struct {
     DefaultApiService
 }
 
-func NewCustomApiService() CustomApiServicer {
+func NewCustomApiService() DefaultApiServicer {
 	return &CustomApiService{}
 }
 
