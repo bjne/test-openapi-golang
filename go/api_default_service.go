@@ -11,8 +11,8 @@ package openapi
 
 import (
 	"context"
-//	"net/http"
-//	"errors"
+	"net/http"
+	"errors"
 )
 
 // DefaultApiService is a service that implements the logic for the DefaultApiServicer
@@ -32,7 +32,7 @@ func (s *DefaultApiService) UsersGet(ctx context.Context) (ImplResponse, error) 
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
 	//TODO: Uncomment the next line to return response Response(200, []string{}) or use other options such as http.Ok ...
-	return Response(200, []string{}), nil
+	//return Response(200, []string{"foo","bar"}), nil
 
-	//return Response(http.StatusNotImplemented, nil), errors.New("UsersGet method not implemented")
+	return Response(http.StatusNotImplemented, nil), errors.New("UsersGet method not implemented")
 }
